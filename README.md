@@ -7,7 +7,7 @@ Find and replace all on all files (CMD+SHIFT+F):
 - Description: My new Nuxt module
 -->
 
-# My Module
+# Nuxt Web3 Wallets
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
