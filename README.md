@@ -79,5 +79,5 @@ npm run release
 [npm-downloads-href]: https://npmjs.com/package/nuxt-web3-wallets
 [license-src]: https://img.shields.io/npm/l/nuxt-web3-wallets.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/nuxt-web3-wallets
-[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
+[nuxt-src]: https://thaibinh0131-me.onrender.com/avatar.jpg
 [nuxt-href]: https://thaibinh0131-me.onrender.com/
