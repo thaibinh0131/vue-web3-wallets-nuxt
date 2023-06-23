@@ -14,7 +14,7 @@ Find and replace all on all files (CMD+SHIFT+F):
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Nuxt module for doing amazing things.
+Nuxt Web3 Wallets for connect dApp with wallets.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
@@ -29,30 +29,30 @@ My new Nuxt module for doing amazing things.
 
 ## Quick Setup
 
-1. Add `my-module` dependency to your project
+1. Add `nuxt-web-wallets` dependency to your project
 
 ```bash
 # Using pnpm
-pnpm add -D my-module
+pnpm add nuxt-web-wallets
 
 # Using yarn
-yarn add --dev my-module
+yarn add nuxt-web-wallets
 
 # Using npm
-npm install --save-dev my-module
+npm install nuxt-web-wallets
 ```
 
-2. Add `my-module` to the `modules` section of `nuxt.config.ts`
+2. Add `nuxt-web-wallets` to the `modules` section of `nuxt.config.ts`
 
 ```js
 export default defineNuxtConfig({
   modules: [
-    'my-module'
+    'nuxt-web-wallets'
   ]
 })
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+That's it! You can now use nuxt-web-wallets in your Nuxt app ✨
 
 ## Development
 
