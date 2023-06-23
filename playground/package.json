@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "my-module-playground",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate"
+  },
+  "devDependencies": {
+    "nuxt": "latest"
+  },
+  "dependencies": {
+    "@walletconnect/ethereum-provider": "^2.8.1",
+    "@walletconnect/modal": "^2.5.2",
+    "ethers": "5.4",
+    "lokijs": "^1.5.12"
+  }
+}
