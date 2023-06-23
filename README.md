@@ -17,15 +17,8 @@ Find and replace all on all files (CMD+SHIFT+F):
 Nuxt Web3 Wallets for connect dApp with wallets.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
-
-## Features
-
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
+  <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
+  <!-- - [📖 &nbsp;Documentation](https://example.com) -->
 
 ## Quick Setup
 
@@ -46,10 +39,8 @@ npm install nuxt-web-wallets
 
 ```js
 export default defineNuxtConfig({
-  modules: [
-    'nuxt-web-wallets'
-  ]
-})
+  modules: ["nuxt-web-wallets"],
+});
 ```
 
 That's it! You can now use nuxt-web-wallets in your Nuxt app ✨
@@ -81,14 +72,12 @@ npm run release
 ```
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-version-href]: https://npmjs.com/package/my-module
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/my-module
-
-[license-src]: https://img.shields.io/npm/l/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://npmjs.com/package/my-module
-
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-web3-wallets/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://www.npmjs.com/package/nuxt-web3-wallets
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-web3-wallets.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/nuxt-web3-wallets
+[license-src]: https://img.shields.io/npm/l/nuxt-web3-wallets.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/nuxt-web3-wallets
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+[nuxt-href]: https://thaibinh0131-me.onrender.com/
