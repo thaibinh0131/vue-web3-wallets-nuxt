@@ -12,7 +12,7 @@ Find and replace all on all files (CMD+SHIFT+F):
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
-[![thaibinh0131][nuxt-href]
+[thaibinh0131][nuxt-href]
 
 Nuxt Web3 Wallets for connect dApp with wallets.
 
