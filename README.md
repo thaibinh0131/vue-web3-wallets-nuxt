@@ -22,7 +22,7 @@ Nuxt Web3 Wallets for connect dApp with wallets.
 
 ## Quick Setup
 
-1. Add `nuxt-web-wallets` dependency to your project
+1. Add `nuxt-web3-wallets` dependency to your project
 
 ```bash
 # Using pnpm
