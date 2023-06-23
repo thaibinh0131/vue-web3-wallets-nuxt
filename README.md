@@ -26,13 +26,13 @@ Nuxt Web3 Wallets for connect dApp with wallets.
 
 ```bash
 # Using pnpm
-pnpm add nuxt-web3-wallets
+pnpm add nuxt-web3-wallets -D
 
 # Using yarn
-yarn add nuxt-web3-wallets
+yarn add nuxt-web3-wallets --dev
 
 # Using npm
-npm install nuxt-web3-wallets
+npm install nuxt-web3-wallets --save-dev
 ```
 
 2. Add `nuxt-web3-wallets` to the `modules` section of `nuxt.config.ts`
