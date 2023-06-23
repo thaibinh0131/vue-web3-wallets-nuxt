@@ -40,7 +40,15 @@ npm install nuxt-web3-wallets --save-dev
 ```js
 export default defineNuxtConfig({
   modules: ["nuxt-web3-wallets"],
+  vite: {
+    // Due to cjs build of @walletconnect/ethereum-provider, need to add this line to nuxt.config.ts
+    optimizeDeps: {
+      include: ['@walletconnect/ethereum-provider']    
+    }
+  }
 });
+
+
 ```
 
 That's it! You can now use nuxt-web-wallets in your Nuxt app ✨
