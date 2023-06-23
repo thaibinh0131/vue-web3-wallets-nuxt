@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, nextTick, ref, watch } from "vue";
-import  { ChainOption, CHAIN } from "../types";
+import { ChainOption, CHAIN } from "../types";
 import type { PropType } from "vue";
 // import WalletConnectProvider from '@walletconnect/web3-provider';
 // import FuseNetworkWalletConnectProvider from 'fuse-walletconnect-web3-provider';
@@ -77,6 +77,11 @@ onMounted(async () => {
   }
 });
 
+const handleClickConnectWallet = (connector: string) => {
+  showModal.value = false;
+  connectToWallet(connector);
+};
+
 watch(
   () => props.connectorIdWithoutModal,
   (val) => {
@@ -101,7 +106,7 @@ watch(
                 <template v-if="windowObj.ethereum">
                   <Connector
                     v-if="!connector.mobileOnly"
-                    @connect="connectToWallet"
+                    @connect="handleClickConnectWallet"
                     :connector="connector"
                   />
                 </template>
@@ -116,7 +121,7 @@ watch(
                 </template>
               </template>
               <template v-else>
-                <Connector @connect="connectToWallet" :connector="connector" />
+                <Connector @connect="handleClickConnectWallet" :connector="connector" />
               </template>
             </template>
           </div>

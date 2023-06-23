@@ -1,21 +1,18 @@
 import { computed, ref, defineEmits } from "vue";
-import type { ChainOption, ChainInfo } from "../types";
+import type { ChainOption, ChainInfo, InitializeOptions } from "../types";
 import Provider, { EthereumProvider } from "@walletconnect/ethereum-provider";
 import { useState } from "#imports";
 
 const provider = ref<Provider>();
 const walletConnectProvider = ref<Provider>();
 
-export const useWallet = (initializeOptions?: {
-  supportedChains: ChainInfo;
-  defaultChain: number;
-  wcProjectId: string;
-  wcRelayUrl?: string;
-  onAccountChanged?: <T>(account: string) => T | Promise<T>;
-  onDisconnect?: <T>() => T | Promise<T>;
-}) => {
+export const useWallet = (initializeOptions?: InitializeOptions) => {
   const SAVED_CONNECTOR_KEY = "savedConnector";
   const address = useState<string>("connectedAddress", () => "");
+  const initOptions = useState<InitializeOptions | undefined>(
+    "initOptions",
+    () => undefined
+  );
   const chainId = useState<number>("chainId");
   const loading = useState<boolean>("loading", () => false);
   const supportedChains = useState<ChainInfo>("supportedChains", () => ({}));
@@ -68,6 +65,11 @@ export const useWallet = (initializeOptions?: {
         myProvider.removeAllListeners();
       }
     }
+    if (typeof window !== "undefined") {
+      Object.keys(window.localStorage)
+        .filter((x) => x.startsWith("wc@2"))
+        .forEach((x) => localStorage.removeItem(x));
+    }
     address.value = "";
     provider.value = undefined;
     savedConnector.value = "";
@@ -84,6 +86,9 @@ export const useWallet = (initializeOptions?: {
     address.value = account;
     provider.value = providerInstance;
     savedConnector.value = connectorId;
+    if (initOptions.value?.onConnect) {
+      initOptions.value?.onConnect(res);
+    }
     subscribeEvent();
   };
 
@@ -124,7 +129,7 @@ export const useWallet = (initializeOptions?: {
           connectorId: "walletconnect",
         });
       }
-
+      initOptions.value = initializeOptions;
       initialized.value = true;
     }
   };
@@ -134,8 +139,8 @@ export const useWallet = (initializeOptions?: {
       provider.value.on("accountsChanged", (accounts: string[]) => {
         if (accounts && accounts.length !== 0) {
           if (address.value === accounts[0]) return;
-          if (initializeOptions?.onAccountChanged) {
-            initializeOptions.onAccountChanged(accounts[0]);
+          if (initOptions.value?.onAccountChanged) {
+            initOptions.value?.onAccountChanged(accounts[0]);
           }
           address.value = accounts[0];
           return;
@@ -156,8 +161,8 @@ export const useWallet = (initializeOptions?: {
       provider.value.on("disconnect", (error: Error) => {
         if (savedConnector.value === "metamask") return;
         console.error(error);
-        if (initializeOptions?.onDisconnect) {
-          initializeOptions.onDisconnect();
+        if (initOptions.value?.onDisconnect) {
+          initOptions.value?.onDisconnect();
         }
         resetState();
       });
@@ -296,6 +301,7 @@ export const useWallet = (initializeOptions?: {
     if (typeof provider.value.disconnect === "function") {
       provider.value.disconnect();
     }
+
     resetState();
   };
   if (initializeOptions) {
