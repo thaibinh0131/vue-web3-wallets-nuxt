@@ -48,7 +48,8 @@ export interface InitializeOptions {
   defaultChain: number;
   wcProjectId: string;
   wcRelayUrl?: string;
-  onAccountChanged?: <T>(account: string) => T | Promise<T>;
-  onDisconnect?: <T>() => T | Promise<T>;
-  onConnect?: <T, R>(args?: R) => T | Promise<T>;
+  onAccountChanged?: (account: string) => void;
+  onDisconnect?: () => void;
+  onConnect?: (account: string) => void;
+  onError?: (error: any) => void
 }

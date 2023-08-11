@@ -1,4 +1,4 @@
-import { computed, ref, defineEmits } from "vue";
+import { computed, ref, Ref, WritableComputedRef } from "vue";
 import type { ChainOption, ChainInfo, InitializeOptions } from "../types";
 import Provider, { EthereumProvider } from "@walletconnect/ethereum-provider";
 import { useState } from "#imports";
@@ -6,7 +6,27 @@ import { useState } from "#imports";
 const provider = ref<Provider>();
 const walletConnectProvider = ref<Provider>();
 
-export const useWallet = (initializeOptions?: InitializeOptions) => {
+type UseWallet = {
+  handleSwitchChain: (chain: number) => Promise<void>;
+  connectToWallet: (id: string) => Promise<void>;
+  setChain: (chain: number) => void;
+  setAddress: (address: string) => void;
+  onConnectResponse: (res: {
+    chain: number;
+    account: string;
+    provider: Provider;
+    connectorId: string;
+  }) => void;
+  disconnect: () => void;
+  address: Ref<string>;
+  chainId: Ref<number>;
+  provider: Ref<Provider | undefined>;
+
+  loadingConnect: Ref<boolean>;
+  savedConnector: WritableComputedRef<string>;
+};
+
+export const useWallet = (initializeOptions?: InitializeOptions): UseWallet => {
   const SAVED_CONNECTOR_KEY = "savedConnector";
   const address = useState<string>("connectedAddress", () => "");
   const initOptions = useState<InitializeOptions | undefined>(
@@ -87,7 +107,7 @@ export const useWallet = (initializeOptions?: InitializeOptions) => {
     provider.value = providerInstance;
     savedConnector.value = connectorId;
     if (initOptions.value?.onConnect) {
-      initOptions.value?.onConnect(res);
+      initOptions.value?.onConnect(account);
     }
     subscribeEvent();
   };
@@ -116,6 +136,11 @@ export const useWallet = (initializeOptions?: InitializeOptions) => {
         methods: ["eth_sendTransaction", "personal_sign"],
         events: ["chainChanged", "accountsChanged"],
         rpcMap: customRpcs,
+      });
+      console.debug({
+        defaultChain,
+        customRpcs,
+        client,
       });
       walletConnectProvider.value = client;
       if (
@@ -276,6 +301,9 @@ export const useWallet = (initializeOptions?: InitializeOptions) => {
       }
     } catch (error) {
       console.error(error);
+      if (initOptions.value?.onError) {
+        initOptions.value?.onError(error);
+      }
       errors.value = error as Error;
     } finally {
       loading.value = false;

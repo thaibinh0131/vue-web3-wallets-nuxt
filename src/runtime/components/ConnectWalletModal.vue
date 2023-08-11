@@ -70,7 +70,7 @@ const availableConns = computed(() => {
 
 onMounted(async () => {
   await nextTick();
-  if (savedConnector.value) {
+  if (savedConnector.value === 'metamask') {
     connectToWallet(savedConnector.value);
   } else if (window.ethereum && window.ethereum.isMetaMask && isMobile.value) {
     connectToWallet("metamask");
